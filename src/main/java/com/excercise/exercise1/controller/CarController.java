@@ -29,11 +29,11 @@ public class CarController {
         // user가 보유한 차량 리스트 불러오기(차량의 뒷자리 4자리로 검색)
         List<CarDto> list = carService.findCarList(userDto, target);
 
-        System.out.println("size : " + list.size());
-        for (CarDto car:
-             list) {
-            System.out.println(car);
-        }
+//        System.out.println("size : " + list.size());
+//        for (CarDto car:
+//             list) {
+//            System.out.println(car);
+//        }
         return "redirect:/";
     }
 }

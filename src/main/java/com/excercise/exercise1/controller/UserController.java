@@ -20,8 +20,11 @@ public class UserController {
         if(!userService.checkLogin(loginDto)){
             return "redirect:/login";
         }
-        User user = userService.findByUsername(loginDto.getUsername()); // 로그인 user 불러오기
+        // 로그인 user 불러오기
+        User user = userService.findByUsername(loginDto.getUsername());
+        // user -> Dto로 변환
         UserDto userDto = UserDto.of(user.getId(), user.getUsername());
+        // session에 저장
         session.setAttribute("user", userDto);
         return "redirect:/";
     }

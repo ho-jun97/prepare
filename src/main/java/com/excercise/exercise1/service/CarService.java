@@ -8,6 +8,7 @@ import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +20,10 @@ public class CarService {
     final private CarRepository carRepository;
     final private UserService userService;
 
+    @Transactional(readOnly = true)
     public List<CarDto> findCarList(UserDto userDto, String target){
 
+        // user 검색
         User user = userService.findByUsername(userDto.getUsername());
         List<Car> list = carRepository.findByLastFourNumbers(user.getId(),target);
 

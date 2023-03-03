@@ -29,4 +29,8 @@ public class CarService {
 
         return list.stream().map(CarDto::new).collect(Collectors.toList());
     }
+
+    public List<CarDto> findCarList(){
+        return carRepository.findAll().stream().map(CarDto::new).collect(Collectors.toList());
+    }
 }

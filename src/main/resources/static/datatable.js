@@ -10,7 +10,10 @@
 //         {data: "location"}
 //     ]
 // });
+// $(document).ready(function () {
+//     $('#data_list').DataTable();
+//     $('.dataTables_length').addClass('bs-select');
+// });
 $(document).ready(function () {
     $('#data_list').DataTable();
-    $('.dataTables_length').addClass('bs-select');
 });

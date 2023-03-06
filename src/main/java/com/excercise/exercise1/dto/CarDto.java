@@ -12,16 +12,13 @@ public class CarDto {
     private Long id;
 
     private String number;
-    private UserDto user;
+    private String username;
 
     @Builder
     public CarDto(Car car){
         this.id = car.getId();
         this.number = car.getNumber();
-        this.user = UserDto.builder()
-                .id(car.getUser().getId())
-                .username(car.getUser().getUsername())
-                .build();
+        this.username = car.getUser().getUsername();
     }
 
 }

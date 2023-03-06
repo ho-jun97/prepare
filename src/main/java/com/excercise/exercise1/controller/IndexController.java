@@ -1,13 +1,19 @@
 package com.excercise.exercise1.controller;
 
 import com.excercise.exercise1.domain.user.User;
+import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
 import com.excercise.exercise1.service.CarService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,9 +41,6 @@ public class IndexController {
         if(userDto==null){
             return "redirect:/login";
         }
-
-        // 로그인 되어있을 경우 차량들의 목록을 보여준다.
-        model.addAttribute("carList", carService.findCarList());
         return "car";
     }
 }

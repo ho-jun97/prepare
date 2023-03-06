@@ -18,8 +18,8 @@ public class UserService {
     public User findByUsername(String username){
 
         User user = userRepository.findByUsername(username).orElse(null);
-
-//        User user = userRepository.findByUsername(userDto.getUsername())
+//
+//        User user = userRepository.findByUsername(username)
 //                .orElseThrow(() -> new Exception("User를 찾지 못하였습니다."));
 
         return user;

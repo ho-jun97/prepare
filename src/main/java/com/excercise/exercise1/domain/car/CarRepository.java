@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
-    @Query("select c from Car c where c.user.id = :userId and right(c.number,4)=:number")
+    @Query("select c from Car c where c.user.id = :userId and c.number like %:number")
     List<Car> findByLastFourNumbers(@Param("userId") Long userId, @Param("number") String number);
     List<Car> findByUser(User user);
 }

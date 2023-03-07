@@ -10,7 +10,7 @@ $(document).ready(function () {
         info: true,
         ajax: {
             data: {
-
+                target: function() { return $("#target").val()}
             },
             url: "/cars",
             type: "GET",
@@ -39,18 +39,8 @@ $(document).ready(function () {
 
         ],
     });
-
     $('#searchBtn').click(function(){
-        let data = {
-            target: $("#target").val()
-        }
-        $.ajax({
-            url: "/cars",
-            type: "GET",
-            data: data,
-            contentType: "application/json",
-        })
-    })
-    $('#data_list').DataTable().destroy();
+        table.ajax.reload();
+    });
 });
 

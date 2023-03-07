@@ -41,4 +41,11 @@ public class CarService {
 
         return list.stream().map(CarDto::new).collect(Collectors.toList());
     }
+
+    public Car findById(Long id) {
+//        carRepository.findById(id).orElseThrow(
+//                () -> new Exception("해당 차량이 없음"));
+        return carRepository.findById(id).orElse(null);
+
+    }
 }

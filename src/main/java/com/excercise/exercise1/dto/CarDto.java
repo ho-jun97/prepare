@@ -14,11 +14,14 @@ public class CarDto {
     private String number;
     private String username;
 
+    private String location;
+
     @Builder
     public CarDto(Car car){
         this.id = car.getId();
         this.number = car.getNumber();
         this.username = car.getUser().getUsername();
+        this.location = car.getAddress();
     }
 
 }

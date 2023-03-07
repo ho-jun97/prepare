@@ -23,19 +23,19 @@ $(document).ready(function () {
             {data: "id"},
             {data: "number"},
             {data: "username"},
-            // {data: "location"}
+            {data: "location"}
         ],
         columnDefs: [
             {
-                target: 0,
+                target: 3,
                 render: function(data, type, row, meta){
-                    // data : 값
-                    // type : display
-                    // row :  object
-                    // meta : object
-                    return '<a href="https://www.naver.com">'+data+'</a>';
+                    return '<a href="/map?id='+row.id+'" id="address">'+data+'</a>';
                 }
-            }
+            },
+            {target: 0, width: "100px"},
+            {target: 1, width: "200px"},
+            {target: 2, width: "100px"},
+            {target: 3, width: "400px"},
 
         ],
     });

@@ -1,5 +1,6 @@
 package com.excercise.exercise1.domain.car;
 
+import com.excercise.exercise1.domain.location.Location;
 import com.excercise.exercise1.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,6 +19,11 @@ public class Car {
     @JoinColumn(name = "user_id")
     private User user;
 
+    private String address;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id")
+    private Location location;
 
 
 }

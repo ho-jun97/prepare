@@ -1,5 +1,6 @@
 package com.excercise.exercise1.controller;
 
+import com.excercise.exercise1.domain.car.Car;
 import com.excercise.exercise1.domain.user.User;
 import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
@@ -42,5 +43,25 @@ public class IndexController {
             return "redirect:/login";
         }
         return "car";
+    }
+
+    @GetMapping("/map")
+    public String map(Model model, @RequestParam Long id){
+        System.out.println("ID : "+ id);
+
+        // id로 차량 정보 가져오기
+        Car car = carService.findById(id);
+        if(car == null){
+            return "redirect:/cars";
+        }
+
+        // 차량이랑 연결된 위치정보 가져오기
+        String lat = car.getLocation().getLat();
+        String lng = car.getLocation().getLng();
+
+        model.addAttribute("lat", lat);
+        model.addAttribute("lng", lng);
+
+        return "map";
     }
 }

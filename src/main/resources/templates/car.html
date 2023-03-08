@@ -16,12 +16,12 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
 </head>
 
-<nav th:replace="~{navigation.html :: navi}"></nav>
+<nav th:replace="~{../fragments/navigation.html :: navi}"></nav>
 
 <body>
 <div class="container" style="width: 100%">
     <div>
-        <th:block th:id="map" th:replace="~{map.html :: mapFragment}"></th:block>
+        <th:block th:id="map" th:replace="~{../fragments/map.html :: mapFragment}"></th:block>
     </div>
     <br>
     <h2>차량 조회</h2>

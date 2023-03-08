@@ -16,13 +16,17 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findByUsername(String username){
-
-        User user = userRepository.findByUsername(username).orElse(null);
-//
-//        User user = userRepository.findByUsername(username)
-//                .orElseThrow(() -> new Exception("User를 찾지 못하였습니다."));
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User를 찾지 못하였습니다."));
 
         return user;
+    }
+
+    @Transactional(readOnly = true)
+    public UserDto getUser(String username){
+        User user = findByUsername(username);
+
+        return UserDto.of(user.getId(), user.getUsername());
     }
 
     @Transactional(readOnly = true)

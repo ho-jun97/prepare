@@ -3,9 +3,11 @@ package com.excercise.exercise1.domain.user;
 import com.excercise.exercise1.domain.car.Car;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "USER")
@@ -23,4 +25,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Car> cars = new ArrayList<>();
 
+    public String toString(){
+        return "[ " + id + ", " + username + " ]";
+    }
 }

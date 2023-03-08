@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface CarRepository extends JpaRepository<Car, Long> {
     @Query("select c from Car c where c.user.id = :userId and c.number like %:number")
     List<Car> findByLastFourNumbers(@Param("userId") Long userId, @Param("number") String number);
-    List<Car> findByUser(User user);
 
-    Optional<Car> findById(Long id);
+    @Query("select c from Car c where c.user.id = :userId")
+    List<Car> findByUserId(@Param("userId") Long userId);
+
 }

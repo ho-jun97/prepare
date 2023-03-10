@@ -1,6 +1,5 @@
 package com.excercise.exercise1.domain.location;
 
-import com.excercise.exercise1.domain.car.Car;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

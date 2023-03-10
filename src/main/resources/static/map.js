@@ -12,14 +12,14 @@ var clusterer = new kakao.maps.MarkerClusterer({
 
 // 데이터를 가져오기 위해 jQuery를 사용합니다
 // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-
 $.ajax({
     url: "/findAllLocation",
     contentType: "application/json",
 }).done(function(data){
     var markers = $(data.positions).map(function(i, position) {
         return new kakao.maps.Marker({
-            position : new kakao.maps.LatLng(position.lat, position.lng)
+            position : new kakao.maps.LatLng(position.lat, position.lng),
+
         });
     });
 
@@ -30,7 +30,23 @@ $.ajax({
 function panTo(lat, lng) {
     // 움직일 위치
     var moveLatLon = new kakao.maps.LatLng(lat, lng)
+
+//     var imageSrc = 'marker01.png';                              // 마커이미지 주소
+//     imageSize = new kakao.maps.Size(34, 36);                // 마커이미지의 크기
+//     imageOption = {offset: new kakao.maps.Point(17, 36)};   // 마커의 좌표와 일치시킬 이미지 안에서의 좌표설정
+//
+// // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+//     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+//
+//     var marker = new kakao.maps.Marker({
+//         position: moveLatLon,
+//         image: markerImage // 마커이미지 설정
+//     });
+
     // 지도 레벨 설정
     map.setLevel(2);
     map.panTo(moveLatLon);
+    // marker.setMap(map)
 }
+
+

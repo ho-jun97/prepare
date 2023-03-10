@@ -1,6 +1,5 @@
 package com.excercise.exercise1.controller;
 
-import com.excercise.exercise1.domain.car.Car;
 import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
 import com.excercise.exercise1.service.CarService;

@@ -1,8 +1,6 @@
 package com.excercise.exercise1.dto;
 
 import com.excercise.exercise1.domain.car.Car;
-import com.excercise.exercise1.domain.location.Location;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @NoArgsConstructor

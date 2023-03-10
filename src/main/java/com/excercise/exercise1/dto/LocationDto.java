@@ -1,7 +1,10 @@
 package com.excercise.exercise1.dto;
 
 import com.excercise.exercise1.domain.location.Location;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter

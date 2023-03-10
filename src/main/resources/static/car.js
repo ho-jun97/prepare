@@ -25,8 +25,6 @@ $(document).ready(function () {
             {data: "username"},
             {data: "address"},
             {data: null},
-            {data: "lat"},
-            {data: "lng"}
         ],
         columnDefs: [
             {
@@ -49,11 +47,8 @@ $(document).ready(function () {
         panTo(data.lat, data.lng);
     })
 
-
     $('#searchBtn').click(function(){
         table.ajax.reload();
     });
-    table.column(5).visible(false);
-    table.column(6).visible(false);
 });
 

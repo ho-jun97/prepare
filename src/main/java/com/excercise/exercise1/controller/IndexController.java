@@ -1,14 +1,21 @@
 package com.excercise.exercise1.controller;
 
+import com.excercise.exercise1.domain.car.Car;
+import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
+import com.excercise.exercise1.service.CarService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
 public class IndexController {
+
+    final private CarService carService;
     /**
      * 홈페이지 이동
      * @return home.html 이랑 렌더링
@@ -45,7 +52,24 @@ public class IndexController {
     }
 
     @GetMapping("/car/add")
-    public String carAddForm(){
+    public String carAddForm(HttpSession session){
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        // 로그인 안했을 경우 로그인 화면으로 이동
+        if(userDto==null){
+            return "redirect:/login";
+        }
         return "caradd";
+    }
+
+    @GetMapping("/car/update")
+    public String carUpdateForm(Model model, HttpSession session, @RequestParam Long id){
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        // 로그인 안했을 경우 로그인 화면으로 이동
+        if(userDto==null){
+            return "redirect:/login";
+        }
+        CarDto carDto = CarDto.of(carService.findById(id));
+        model.addAttribute("car", carDto);
+        return "carupdate";
     }
 }

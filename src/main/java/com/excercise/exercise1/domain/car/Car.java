@@ -2,6 +2,7 @@ package com.excercise.exercise1.domain.car;
 
 import com.excercise.exercise1.domain.location.Location;
 import com.excercise.exercise1.domain.user.User;
+import com.excercise.exercise1.dto.CarDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,11 +30,6 @@ public class Car {
     @JoinColumn(name = "location_id")
     private Location location;
 
-
-    private void addUser(User user){
-        this.user = user;
-    }
-
     @Builder
     public Car(Long id, String number, User user, String address, Location location) {
         this.id = id;
@@ -59,5 +55,11 @@ public class Car {
         if(!this.user.getCars().contains(this)){
             this.user.addCar(this);
         }
+    }
+
+    public void update(CarDto carDto) {
+        this.number = carDto.getNumber();
+        this.address = carDto.getAddress();
+        this.location.update(carDto.getLat(), carDto.getLng());
     }
 }

@@ -31,6 +31,6 @@ function panTo(lat, lng) {
     // 움직일 위치
     var moveLatLon = new kakao.maps.LatLng(lat, lng)
     // 지도 레벨 설정
-    map.setLevel(1);
+    map.setLevel(2);
     map.panTo(moveLatLon);
 }

@@ -35,4 +35,9 @@ public class Location {
                 .lng(lng)
                 .build();
     }
+
+    public void update(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
 }

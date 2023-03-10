@@ -24,16 +24,24 @@ $(document).ready(function () {
             {data: "number"},
             {data: "username"},
             {data: "address"},
+            {data: null},
             {data: "lat"},
             {data: "lng"}
         ],
         columnDefs: [
+            {
+                target: 4,
+                render: function(data, type, row, meta){
+                    return '<a href="car/update?id='+row.id+'" class="btn btn-outline-success">수정</a>'
+                }
+            },
             {target: 0, width: "100px"},
             {target: 1, width: "200px"},
             {target: 2, width: "100px"},
             {target: 3, width: "400px"},
             {target: 4, width: "50px"},
             {target: 5, width: "50px"},
+            {target: 6, width: "50px"},
         ],
     });
     $("#data_list tbody").on('click', 'tr', function(){
@@ -45,7 +53,7 @@ $(document).ready(function () {
     $('#searchBtn').click(function(){
         table.ajax.reload();
     });
-    table.column(4).visible(false);
     table.column(5).visible(false);
+    table.column(6).visible(false);
 });
 

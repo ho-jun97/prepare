@@ -37,4 +37,10 @@ public class CarController {
 
         return "redirect:/";
     }
+
+    @PostMapping("/carUpdate/{id}")
+    public String updateCar(@PathVariable("id") Long carId, @ModelAttribute CarDto carDto){
+        carService.updateCar(carId, carDto);
+        return "redirect:/";
+    }
 }

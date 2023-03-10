@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Getter
 @Setter
@@ -33,4 +34,16 @@ public class CarDto {
         this.lng = car.getLocation().getLng();
     }
 
+    public static CarDto of(Car car) {
+        return CarDto.builder()
+                .id(car.getId())
+                .number(car.getNumber())
+                .username(car.getUser().getUsername())
+                .address(car.getAddress())
+                .lat(car.getLocation().getLat())
+                .lng(car.getLocation().getLng())
+                .build();
+    }
 }
+
+

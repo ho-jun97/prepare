@@ -71,4 +71,11 @@ public class CarService {
         // 6. 저장
         carRepository.save(car);
     }
+
+    @Transactional
+    public void updateCar(Long carId, CarDto carDto) {
+        Car car = carRepository.findById(carId).orElseThrow(
+                () -> new RuntimeException("해당 차량을 찾을 수 없습니다."));
+        car.update(carDto);
+    }
 }

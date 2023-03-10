@@ -51,6 +51,11 @@ public class IndexController {
         return "car";
     }
 
+    /**
+     * 차량 등록 페이지 이동
+     * @param session
+     * @return
+     */
     @GetMapping("/car/add")
     public String carAddForm(HttpSession session){
         UserDto userDto = (UserDto) session.getAttribute("user");
@@ -61,6 +66,13 @@ public class IndexController {
         return "caradd";
     }
 
+    /**
+     * 차랑 수정페이지로 이동
+     * @param model 해당 아이디 차량의 정보를 담기
+     * @param session
+     * @param id
+     * @return
+     */
     @GetMapping("/car/update")
     public String carUpdateForm(Model model, HttpSession session, @RequestParam Long id){
         UserDto userDto = (UserDto) session.getAttribute("user");

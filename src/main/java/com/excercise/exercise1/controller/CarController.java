@@ -6,13 +6,12 @@ import com.excercise.exercise1.service.CarService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class CarController {
 
@@ -25,9 +24,17 @@ public class CarController {
      * @return 차량 목록 리스트
      */
     @GetMapping("/cars")
-    public ResponseEntity<List<CarDto>> findCars(HttpSession session, @RequestParam(defaultValue = "")  String target){
+    public @ResponseBody ResponseEntity<List<CarDto>> findCars(HttpSession session, @RequestParam(defaultValue = "")  String target){
         UserDto userDto = (UserDto) session.getAttribute("user");
-        List<CarDto> list = carService.findCarList(userDto, target);
-        return ResponseEntity.ok(list);
+        List<CarDto> carList = carService.findCarList(userDto, target);
+        return ResponseEntity.ok(carList);
+    }
+
+    @PostMapping("/carAdd")
+    public String addCar(HttpSession session, @ModelAttribute CarDto carDto){
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        carService.addCar(userDto,carDto);
+
+        return "redirect:/";
     }
 }

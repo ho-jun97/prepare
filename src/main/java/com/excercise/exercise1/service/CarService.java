@@ -2,6 +2,8 @@ package com.excercise.exercise1.service;
 
 import com.excercise.exercise1.domain.car.Car;
 import com.excercise.exercise1.domain.car.CarRepository;
+import com.excercise.exercise1.domain.location.Location;
+import com.excercise.exercise1.domain.user.User;
 import com.excercise.exercise1.domain.user.UserRepository;
 import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
@@ -30,7 +32,10 @@ public class CarService {
         }else{
             carList = carRepository.findByUserId(userDto.getId());
         }
-
+        for (Car car:
+             carList) {
+            System.out.println(car);
+        }
         return carList.stream()
                 .map(CarDto::new)
                 .collect(Collectors.toList());
@@ -50,5 +55,20 @@ public class CarService {
                 .stream()
                 .map(CarDto::new)
                 .collect(Collectors.toList());
+    }
+    
+    @Transactional
+    public void addCar(UserDto userDto, CarDto carDto){
+        // 1. 유저 조회
+        User user = userRepository.findById(userDto.getId()).orElseThrow(
+                () -> new RuntimeException("유저를 찾지 못하였습니다."));
+        // 2. Location 객체 만들기
+        Location location = Location.createLocation(carDto.getLat(), carDto.getLng());
+        // 3. 새로운 차 객체 만들기
+        Car car = Car.createCar(carDto.getNumber(), carDto.getAddress(), location);
+        // 5. 유저와 차 매핑
+        user.addCar(car);
+        // 6. 저장
+        carRepository.save(car);
     }
 }

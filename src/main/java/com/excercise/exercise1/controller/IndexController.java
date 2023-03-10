@@ -43,4 +43,9 @@ public class IndexController {
         }
         return "car";
     }
+
+    @GetMapping("/car/add")
+    public String carAddForm(){
+        return "caradd";
+    }
 }

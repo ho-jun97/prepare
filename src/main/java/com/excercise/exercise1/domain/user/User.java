@@ -1,7 +1,7 @@
 package com.excercise.exercise1.domain.user;
 
 import com.excercise.exercise1.domain.car.Car;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

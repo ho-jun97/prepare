@@ -3,7 +3,7 @@ package com.excercise.exercise1.controller;
 import com.excercise.exercise1.dto.LoginDto;
 import com.excercise.exercise1.dto.UserDto;
 import com.excercise.exercise1.service.UserService;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

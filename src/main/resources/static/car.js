@@ -38,8 +38,6 @@ $(document).ready(function () {
             {target: 2, width: "100px"},
             {target: 3, width: "400px"},
             {target: 4, width: "50px"},
-            {target: 5, width: "50px"},
-            {target: 6, width: "50px"},
         ],
     });
     $("#data_list tbody").on('click', 'tr', function(){

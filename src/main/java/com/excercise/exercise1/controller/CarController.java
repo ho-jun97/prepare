@@ -3,7 +3,7 @@ package com.excercise.exercise1.controller;
 import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.UserDto;
 import com.excercise.exercise1.service.CarService;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

@@ -3,7 +3,7 @@ package com.excercise.exercise1.domain.car;
 import com.excercise.exercise1.domain.location.Location;
 import com.excercise.exercise1.domain.user.User;
 import com.excercise.exercise1.dto.CarDto;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

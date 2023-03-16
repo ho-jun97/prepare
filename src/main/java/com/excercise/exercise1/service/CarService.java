@@ -6,6 +6,7 @@ import com.excercise.exercise1.domain.location.Location;
 import com.excercise.exercise1.domain.user.User;
 import com.excercise.exercise1.domain.user.UserRepository;
 import com.excercise.exercise1.dto.CarDto;
+import com.excercise.exercise1.dto.CarSearchCondition;
 import com.excercise.exercise1.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,21 +25,9 @@ public class CarService {
 
     // 자신 보유 차량 넘버 뒷자리 4자리 차량 조회
     @Transactional(readOnly = true)
-    public List<CarDto> findCarList(UserDto userDto, String target){
-        List<Car> carList = null;
-
-        if(StringUtils.hasText(target)){
-            carList = carRepository.findByLastFourNumbers(userDto.getId(), target);
-        }else{
-            carList = carRepository.findByUserId(userDto.getId());
-        }
-        for (Car car:
-             carList) {
-            System.out.println(car);
-        }
-        return carList.stream()
-                .map(CarDto::new)
-                .collect(Collectors.toList());
+    public List<CarDto> findCarList(UserDto userDto, CarSearchCondition condition){
+        condition.setUsername(userDto.getUsername());
+        return carRepository.search(condition);
     }
 
     // 차량 한대 조회

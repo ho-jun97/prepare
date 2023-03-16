@@ -1,10 +1,8 @@
 package com.excercise.exercise1.domain.car;
 
-import com.excercise.exercise1.domain.user.QUser;
 import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.CarSearchCondition;
-import com.excercise.exercise1.dto.QCarDto;
-import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.util.StringUtils;
@@ -12,8 +10,8 @@ import org.springframework.util.StringUtils;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.excercise.exercise1.domain.car.QCar.*;
-import static com.excercise.exercise1.domain.user.QUser.*;
+import static com.excercise.exercise1.domain.car.QCar.car;
+import static com.excercise.exercise1.domain.user.QUser.user;
 
 public class CarRepositoryImpl implements CarRepositoryCustom{
 
@@ -25,8 +23,9 @@ public class CarRepositoryImpl implements CarRepositoryCustom{
 
     @Override
     public List<CarDto> search(CarSearchCondition condition) {
-        List<CarDto> result = queryFactory
-                .select(new QCarDto(
+
+        return queryFactory
+                .select(Projections.fields(CarDto.class,
                         car.id,
                         car.number,
                         car.user.username,
@@ -40,12 +39,10 @@ public class CarRepositoryImpl implements CarRepositoryCustom{
                         usernameEq(condition.getUsername()),
                         targetEq(condition.getTarget()))
                 .fetch();
-        return result;
-
     }
 
     private BooleanExpression targetEq(String target) {
-        return StringUtils.hasText(target) ? car.number.like("%"+target) : null;
+        return StringUtils.hasText(target) && target.length() >= 4 ? car.number.endsWith(target) : null;
     }
 
     private BooleanExpression usernameEq(String username) {

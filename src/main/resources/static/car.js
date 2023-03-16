@@ -1,5 +1,6 @@
 let table;
 $(document).ready(function () {
+    let len;
     table = $("#data_list").DataTable({
         searching: false,
         responsive: true,
@@ -16,6 +17,10 @@ $(document).ready(function () {
             type: "GET",
             contentType: "application/json",
             dataSrc: function(data){
+                len = $("#target").val().length
+                if(len < 4 && len !== 0){
+                    alert("차량 번호를 다시 입력하시오")
+                }
                 return data;
             }
         },

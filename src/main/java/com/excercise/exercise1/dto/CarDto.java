@@ -5,10 +5,7 @@ import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
 @NoArgsConstructor
-@Builder
-@Getter
-@Setter
-@ToString
+@Data
 public class CarDto {
     private Long id;
 
@@ -21,6 +18,7 @@ public class CarDto {
 
     private double lng;
 
+    @Builder
     @QueryProjection
     public CarDto(Long id, String number, String username, String address, double lat, double lng) {
         this.id = id;

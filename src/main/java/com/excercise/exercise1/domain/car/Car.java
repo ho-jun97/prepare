@@ -4,13 +4,15 @@ import com.excercise.exercise1.domain.location.Location;
 import com.excercise.exercise1.domain.user.User;
 import com.excercise.exercise1.dto.CarDto;
 import javax.persistence.*;
+
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Car {
 
     @Id
@@ -35,6 +37,20 @@ public class Car {
         this.number = number;
         this.user = user;
         this.address = address;
+        this.location = location;
+    }
+
+    public Car(String number, String address, User user, Location location){
+        this.number = number;
+        this.address = address;
+        setUser(user);
+        if(location != null){
+            changeLocation(location);
+        }
+
+    }
+
+    private void changeLocation(Location location) {
         this.location = location;
     }
 

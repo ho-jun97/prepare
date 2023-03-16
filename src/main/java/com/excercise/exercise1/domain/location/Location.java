@@ -4,13 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Location {
 
     @Id
@@ -24,6 +26,11 @@ public class Location {
     @Builder
     public Location(Long id, double lat, double lng) {
         this.id = id;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public Location(double lat, double lng) {
         this.lat = lat;
         this.lng = lng;
     }

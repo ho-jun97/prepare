@@ -8,10 +8,13 @@ import com.excercise.exercise1.domain.user.UserRepository;
 import com.excercise.exercise1.dto.CarDto;
 import com.excercise.exercise1.dto.CarSearchCondition;
 import com.excercise.exercise1.dto.UserDto;
+import com.excercise.exercise1.exception.CarException;
+import com.excercise.exercise1.exception.CarExceptionResult;
+import com.excercise.exercise1.exception.UserException;
+import com.excercise.exercise1.exception.UserExceptionResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +53,7 @@ public class CarService {
     public void addCar(UserDto userDto, CarDto carDto){
         // 1. 유저 조회
         User user = userRepository.findById(userDto.getId()).orElseThrow(
-                () -> new RuntimeException("유저를 찾지 못하였습니다."));
+                () -> new UserException(UserExceptionResult.USER_NOT_FOUND));
         // 2. Location 객체 만들기
         Location location = Location.createLocation(carDto.getLat(), carDto.getLng());
         // 3. 새로운 차 객체 만들기
@@ -64,7 +67,7 @@ public class CarService {
     @Transactional
     public void updateCar(Long carId, CarDto carDto) {
         Car car = carRepository.findById(carId).orElseThrow(
-                () -> new RuntimeException("해당 차량을 찾을 수 없습니다."));
+                () -> new CarException(CarExceptionResult.CAR_NOT_FOUND));
         car.update(carDto);
     }
 }
